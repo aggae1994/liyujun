@@ -28,7 +28,7 @@ void main() {
       print('상품 이름을 입력해 주세요!');
       String? productName = stdin.readLineSync()?.trim(); // 공백 제거
 
-      // 상품 이름이 null이거나 빈 문자열인지 확인
+      print(productName);
       if (productName == null || productName.isEmpty) {
         print('유효한 상품 이름을 입력해 주세요.');
         continue;
