@@ -145,3 +145,133 @@ void main() {
     }
   }
 }
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+class Product {
+  String name;
+  int price;
+
+  Product(this.name, this.price);
+} <- Product 만들 때 this를 사용해서 Product 리스트를 ('탕후루', 5000) 이라고 
+      입력하면 name 탕후루 price 5000 이라고 설정 되게 만들었습니다.
+
+
+class ShoppingMall {
+
+  List<Product> productList = []; 상품명 하고 가격을 저장합니다
+  
+  Map<Product, int> cart = {}; <- 장바구니 인데 product는 상품을 나타내고  여기서 int는 상품 수량을 나타 냅니다.
+
+  ShoppingMall(this.productList); <- 상품 목록을 받아와서 리스트를 조기화 합니다.
+
+
+
+
+
+  void showProducts() {
+  
+    if (productList.isEmpty) {
+    
+      print('상품 목록이 비어 있습니다.');
+      
+    } else {
+    
+      for (var product in productList) {
+      
+        print('${product.name} / ${product.price}원');
+        
+      }
+      
+    }
+    
+  }
+  
+
+상품 목록을 출력하고 리스트가 비어 있으면 비어 있다고 출력합니다.
+
+
+  void addToCart(String productName, int quantity) {
+    Product? selectedProduct;
+
+
+    for (var product in productList) {
+      if (product.name == productName) {
+        selectedProduct = product;
+        break;
+      }
+    }
+
+    if (selectedProduct == null) {
+      print("해당 상품은 품절입니다.");
+      return;
+    }
+
+    if (quantity > 0) {
+      cart[selectedProduct] = (cart[selectedProduct] ?? 0) + quantity;
+      print('장바구니에 ${selectedProduct.name} $quantity개가 담겼습니다!');
+    } else {
+      print('0개보다 많은 개수의 상품만 담을 수 있습니다.');
+    }
+  }
+
+
+리스트 에서 name과 일치하는  객체를 찾습니다.
+
+입력한 상품이 없으면 "해당 상품은 품절입니다" 메시지를 출력하고 종료합니다.
+
+입력한 수량이 0 보다 크면 장바구니에 상품을 추가하고 추가된 수량을 출력합니다.
+
+0 이하의 수량이 입력되면 경고 메시지를 출력합니다.
+
+
+
+
+
+  void showTotal() {
+    if (cart.isEmpty) {
+      print('장바구니가 비어 있습니다.');
+      return;
+    }
+
+    int totalPrice = 0;
+
+    cart.forEach((product, quantity) {
+      totalPrice += product.price * quantity;
+    });
+
+    print('장바구니의 총 가격은 $totalPrice원입니다.');
+  }
+
+
+장바구니가 비어 있으면 "장바구니가 비어 있습니다" 메시지를 출력하고 종료합니다.
+
+위에서 말한 장바구니에 담긴 상품들의 가격과 수량을 곱하여 totalPrice에 누적합니다.
+
+최종 총 가격을 출력합니다.
+
+
+  
+
+  void removeFromCart(String productName) {
+    Product? selectedProduct;
+
+    for (var product in productList) {
+      if (product.name == productName) {
+        selectedProduct = product;
+        break;
+      }
+    }
+
+    if (selectedProduct == null || !cart.containsKey(selectedProduct)) {
+      print("장바구니에 해당 상품이 없습니다.");
+      return;
+    }
+<- 찾은 상품이 없거나 장바구니에 없는 상품일 경우 "장바구니에 해당 상품이 없습니다" 메시지를 출력합니다.
+   
+  }
+}
+
+
+
