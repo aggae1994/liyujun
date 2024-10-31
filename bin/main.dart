@@ -20,13 +20,13 @@ void main() {
     print(
         '--------------------------------------------------------------------------------------------------------------');
     print('어떤 기능을 사용하시겠습니까? (1, 2, 3, 4 중 하나를 선택하세요)');
-    String? choice = stdin.readLineSync()?.trim(); // 입력값에서 불필요한 공백 제거
+    String? choice = stdin.readLineSync()?.trim();
 
     if (choice == '1') {
       myShop.showProducts();
     } else if (choice == '2') {
       print('상품 이름을 입력해 주세요!');
-      String? productName = stdin.readLineSync()?.trim(); // 공백 제거
+      String? productName = stdin.readLineSync()?.trim();
 
       print(productName);
       if (productName == null || productName.isEmpty) {
@@ -34,7 +34,6 @@ void main() {
         continue;
       }
 
-      // 상품이 목록에 있는지 확인
       bool productExists =
           products.any((product) => product.name == productName);
       if (!productExists) {
@@ -43,15 +42,13 @@ void main() {
       }
 
       print('상품 개수를 입력해 주세요!');
-      String? quantityInput = stdin.readLineSync()?.trim(); // 공백 제거
+      String? quantityInput = stdin.readLineSync()?.trim();
 
-      // null이 아닌지 확인 후 숫자 변환 시도
       if (quantityInput == null || quantityInput.isEmpty) {
         print('유효한 개수를 입력해 주세요.');
         continue;
       }
 
-      // 숫자 변환을 시도하고 null 여부 확인
       int? quantity = int.tryParse(quantityInput);
       if (quantity == null || quantity <= 0) {
         print('유효한 숫자를 입력해 주세요.');

@@ -13,7 +13,6 @@ class ShoppingMall {
 
   void showProducts() {
     if (productList.isEmpty) {
-      print('상품 목록이 비어 있습니다.');
     } else {
       for (var product in productList) {
         print('${product.name} / ${product.price}원');
@@ -24,7 +23,6 @@ class ShoppingMall {
   void addToCart(String productName, int quantity) {
     Product? selectedProduct;
 
-    // 상품 목록에서 상품 찾기
     for (var product in productList) {
       if (product.name == productName) {
         selectedProduct = product;
@@ -71,11 +69,7 @@ class ShoppingMall {
     }
 
     if (selectedProduct == null || !cart.containsKey(selectedProduct)) {
-      print("장바구니에 해당 상품이 없습니다.");
       return;
     }
-
-    cart.remove(selectedProduct);
-    print('${selectedProduct.name}이 장바구니에서 제거되었습니다.');
   }
 }
