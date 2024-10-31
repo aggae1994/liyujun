@@ -167,31 +167,6 @@ class ShoppingMall {
   ShoppingMall(this.productList); <- 상품 목록을 받아와서 리스트를 조기화 합니다.
 
 
-
-
-
-  void showProducts() {
-  
-    if (productList.isEmpty) {
-    
-      print('상품 목록이 비어 있습니다.');
-      
-    } else {
-    
-      for (var product in productList) {
-      
-        print('${product.name} / ${product.price}원');
-        
-      }
-      
-    }
-    
-  }
-  
-
-상품 목록을 출력하고 리스트가 비어 있으면 비어 있다고 출력합니다.
-
-
   void addToCart(String productName, int quantity) {
     Product? selectedProduct;
 
@@ -207,6 +182,8 @@ class ShoppingMall {
       print("해당 상품은 품절입니다.");
       return;
     }
+    
+상품명에 널 값이 포함 되면 출력되게 만들었습니다.
 
     if (quantity > 0) {
       cart[selectedProduct] = (cart[selectedProduct] ?? 0) + quantity;
@@ -252,26 +229,6 @@ class ShoppingMall {
 최종 총 가격을 출력합니다.
 
 
-  
-
-  void removeFromCart(String productName) {
-    Product? selectedProduct;
-
-    for (var product in productList) {
-      if (product.name == productName) {
-        selectedProduct = product;
-        break;
-      }
-    }
-
-    if (selectedProduct == null || !cart.containsKey(selectedProduct)) {
-      print("장바구니에 해당 상품이 없습니다.");
-      return;
-    }
-<- 찾은 상품이 없거나 장바구니에 없는 상품일 경우 "장바구니에 해당 상품이 없습니다" 메시지를 출력합니다.
-   
-  }
-}
 
 
 
